@@ -476,13 +476,14 @@ void draw_string(chip_state_t *chip) {
   char serial_e[32] = "                               ";
   snprintf (serial_a, 32, " %6d S/s  %5d ms              ", 1000000 / (chip->sampleTimeUs + (chip->sampleMs * 1000)), chip->captureMs);
   if (chip->countA0 == 0) snprintf (serial_b, 32, "%c D0 %4d Hz  %3d%% Duty        ", sb, chip->hz0, chip->dc0);
-  else                    snprintf (serial_b, 32, "%c A0  %1.1f V %1.1f Vmin %1.1f Vmax    ", sb, chip->valA0, chip->sampleMin0, chip->sampleMax0);
+//  else                    snprintf (serial_b, 32, "%c A0  %1.1f V %1.1f Vmin %1.1f Vmax    ", sb, chip->valA0, chip->sampleMin0, chip->sampleMax0);
+  else                    snprintf (serial_b, 32, "%c A0  %1.1f V %1.1f Vm %1.1f Vx", sb, chip->valA0, chip->sampleMin0, chip->sampleMax0);
   if (chip->countA1 == 0) snprintf (serial_c, 32, "%c D1 %4d Hz  %3d%% Duty        ", sc, chip->hz1, chip->dc1);
-  else                    snprintf (serial_c, 32, "%c A1  %1.1f V %1.1f Vmin %1.1f Vmax    ", sc, chip->valA1, chip->sampleMin1, chip->sampleMax1);
+  else                    snprintf (serial_c, 32, "%c A1  %1.1f V %1.1f Vm %1.1f Vx", sc, chip->valA1, chip->sampleMin1, chip->sampleMax1);
   if (chip->countA2 == 0) snprintf (serial_d, 32, "%c D2 %4d Hz  %3d%% Duty        ", sd, chip->hz2, chip->dc2);
-  else                    snprintf (serial_d, 32, "%c A2  %1.1f V %1.1f Vmin %1.1f Vmax    ", sd, chip->valA2, chip->sampleMin2, chip->sampleMax2);
+  else                    snprintf (serial_d, 32, "%c A2  %1.1f V %1.1f Vm %1.1f Vx", sd, chip->valA2, chip->sampleMin2, chip->sampleMax2);
   if (chip->countA3 == 0) snprintf (serial_e, 32, "%c D3 %4d Hz  %3d%% Duty        ", se, chip->hz3, chip->dc3);
-  else                    snprintf (serial_e, 32, "%c A3  %1.1f V %1.1f Vmin %1.1f Vmax    ", se, chip->valA3, chip->sampleMin3, chip->sampleMax3);
+  else                    snprintf (serial_e, 32, "%c A3  %1.1f V %1.1f Vm %1.1f Vx", se, chip->valA3, chip->sampleMin3, chip->sampleMax3);
   rgba_t color;
   int ascii, yy;
   chip->serial_y = chip->fb_h - chip->serial_h + 2;
